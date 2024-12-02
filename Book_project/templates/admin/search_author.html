@@ -1,0 +1,73 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+
+<h2>Search Results</h2>
+<p>Search Query: {{ query }}</p>
+
+<!-- Display Books -->
+<h3>Books</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Book Name</th>
+            <th>Book Price</th>
+            <th>Author</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if books %}
+            {% for book in authors %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.price }}</td>
+                <td>{{ book.author }}</td>
+
+                <td>
+                    <a href="{% url 'details' book.id %}" class="btn btn-primary">Details</a>
+                    <a href="{% url 'update' book.id %}" class="btn btn-success">Update</a>
+                    <a href="{% url 'delete' book.id %}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="4" class="text-center">No books found.</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+<!-- Display Authors -->
+<!--<h3>Authors</h3>-->
+<!--<table class="table">-->
+<!--    <thead>-->
+<!--        <tr>-->
+<!--            <th>#</th>-->
+<!--            <th>Author Name</th>-->
+<!--            <th>Actions</th>-->
+<!--        </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--        {% if authors %}-->
+<!--            {% for author in authors %}-->
+<!--            <tr>-->
+<!--                <td>{{ forloop.counter }}</td>-->
+<!--                <td>{{ author.name }}</td>-->
+<!--                <td>-->
+<!--                    &lt;!&ndash; Example Action Links &ndash;&gt;-->
+<!--                    <a href="#" class="btn btn-primary">View Books</a>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            {% endfor %}-->
+<!--        {% else %}-->
+<!--            <tr>-->
+<!--                <td colspan="3" class="text-center">No authors found.</td>-->
+<!--            </tr>-->
+<!--        {% endif %}-->
+<!--    </tbody>-->
+<!--</table>-->
+
+{% endblock %}
